@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <title>favourite pet shop</title>
+    <head>
+        <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <link href="main.css" rel="stylesheet">
+    </head>
+    <body>
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <% if (loggedin) { %>
+                <a class="btn btn-primary navbar-right navbar-btn" style="margin-right: 5px;" href="/logout" type="button" >Logout</a>
+            <% } else { %>
+                <a class="btn btn-outline-secondary navbar-btn navbar-right" style="margin-right: 5px;" href="/signup" type="button">Sign Up</a>
+                <a class="btn btn-primary navbar-right navbar-btn" style="margin-right: 5px;" href="/login" type="button" >Login</a>    
+            <% } %>
+        </nav>
+        <div id="snippetContent" style="margin-top: 50px;">
+            <div class="container">
+                    <% pets.forEach(element => { %>
+                        <div class="col-xs-12 col-md-6 bootstrap snippets bootdeys">
+                            <!-- product -->
+                            <div class="product-content product-wrap clearfix">
+                                <div class="row">
+                                    <div class="col-md-5 col-sm-12 col-xs-12">
+                                        <div class="product-image"> 
+                                            <img src="<%= element.Picture %>" alt="194x228" class="img-responsive"> 
+                                            <!-- <span class="tag2 hot">
+                                                HOT 
+                                            </span>  -->
+                                        </div>
+                                    </div>
+                                    <div class="col-md-7 col-sm-12 col-xs-12">
+                                        <div class="product-deatil">
+                                            <h5 class="name">
+                                                <p><span style="font-weight: bold;">Name:</span> <%= element.Name %></p>
+                                                <p><span style="font-weight: bold;">Owner:</span> <%= element.Owner %></p>
+                                                <p><span style="font-weight: bold;">Breed:</span> <%= element.Breed %></p>
+                                                <p><span style="font-weight: bold;">Location:</span> <%= element.Location %></p>
+                                                <p><span style="font-weight: bold;">Age:</span> <%= element.Age %></p>
+                                            </h5>
+                                            <!-- <span class="tag1"></span>  -->
+                                        </div>
+                                        <div class="description">
+                                            <!-- <p>Proin in ullamcorper lorem. Maecenas eu ipsum </p> -->
+                                        </div>
+                                        <div class="product-info smart-form">
+                                            <div class="row">
+                                                <div class="col-md-12 col-sm-12 col-xs-12"> 
+                                                    <div class="col-md-4">
+                                                        <% if (element.isAddopted) { %>
+                                                            <button class="btn btn-success" id="<%= element.ID %>" value="<%= element.ID %>" disabled>Adopted</button> 
+                                                        <%} else { %>
+                                                            <button class="btn btn-success btnadopt" style="margin-right: 50px;" id="<%= element.ID %>" value="<%= element.ID %>">Adopt</button>    
+                                                        <%} %>
+                                                    </div>
+                                                    <div class="col-lg-2">
+                                                        <button class="btn btn-success btnnormalhistory" id="<%= element.ID %>" value="<%= element.ID %>">View Detail</button>
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <!-- end product -->
+                        </div>
+                    <% }); %>
+            </div>
+        </div>
+        <!-- Modal start -->
+        <div class="modal fade bs-example-modal-sm" id="myModel" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+            <div class="modal-dialog modal-sm" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Please login</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Please <a class="btn btn-primary navbar-btn" style="margin-right: 5px;" href="/login" type="button" >Login</a> before adopting. Not Having Account? <a class="btn btn-outline-secondary navbar-btn" style="margin-right: 5px;" href="/signup" type="button">Sign Up</a></p> 
+                </div>
+              </div>
+            </div>
+        </div>
+        <!-- Modal End -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script src="script.js"></script>
+    </body>
+</html>

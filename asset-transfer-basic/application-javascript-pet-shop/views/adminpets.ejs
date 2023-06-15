@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <title>favourite pet shop</title>
+    <head>
+        <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <link href="main.css" rel="stylesheet">
+    </head>
+    <body>
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <% if (loggedin) { %>
+                <a class="btn btn-primary navbar-right navbar-btn" style="margin-right: 5px;" href="/adminlogout" type="button" >Logout</a>
+                <a class="btn btn-primary btn-success navbar-left navbar-btn" style="margin-right: 5px;margin-left: 10PX;" href="/pets" type="button" >Home</a>
+                <a class="btn btn-primary btn-success navbar-left navbar-btn" style="margin-right: 5px;margin-left: 10PX;" href="/addpet" type="button" >Add pet</a>
+            <% } %>
+        </nav>
+        <div id="snippetContent" style="margin-top: 50px;">
+            <div class="container">
+                    <% pets.forEach(element => { %>
+                        <div class="col-xs-12 col-md-6 bootstrap snippets bootdeys">
+                            <!-- product -->
+                            <div class="product-content product-wrap clearfix">
+                                <div class="row">
+                                    <div class="col-md-5 col-sm-12 col-xs-12">
+                                        <div class="product-image"> 
+                                            <img src="<%= element.Picture %>" alt="image-pet" class="img-responsive"> 
+                                            <!-- <span class="tag2 hot">
+                                                HOT 
+                                            </span>  -->
+                                        </div>
+                                    </div>
+                                    <div class="col-md-7 col-sm-12 col-xs-12">
+                                        <div class="product-deatil">
+                                            <h5 class="name">
+                                                <p><span style="font-weight: bold;">Name:</span> <%= element.Name %></p>
+                                                <p><span style="font-weight: bold;">Owner:</span> <%= element.Owner %></p>
+                                                <p><span style="font-weight: bold;">Breed:</span> <%= element.Breed %></p>
+                                                <p><span style="font-weight: bold;">Location:</span> <%= element.Location %></p>
+                                                <p><span style="font-weight: bold;">Age:</span> <%= element.Age %></p>
+                                            </h5>
+                                            <!-- <span class="tag1"></span>  -->
+                                        </div>
+                                        <div class="description">
+                                            <!-- <p>Proin in ullamcorper lorem. Maecenas eu ipsum </p> -->
+                                        </div>
+                                        <div class="product-info smart-form">
+                                            <div class="row">
+                                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                                    <div class="col-sm-2" style="width: 49%;">
+                                                        <a class="btn btn-success" style="margin-right: 5px;" id="<%= element.ID %>" href="/editpet?uid=<%= element.ID %>">Edit</a>
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <a class="btn btn-success" id="<%= element.ID %>" href="/petdetail?uid=<%= element.ID %>&type='spec'">View Detail</a>
+                                                    </div>
+                                                    
+                                                
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <!-- end product -->
+                        </div>
+                    <% }); %>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    </body>
+</html>

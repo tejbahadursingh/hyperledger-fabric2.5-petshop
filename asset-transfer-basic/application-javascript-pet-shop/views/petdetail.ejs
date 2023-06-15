@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    <title>favourite pet shop</title>
+    <head>
+        <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <link href="main.css" rel="stylesheet">
+    </head>
+    <body>
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <% if (locals.loggedin && locals.username=='admin') { %>
+                <a class="btn btn-primary navbar-right navbar-btn" style="margin-right: 5px;" href="/adminlogout" type="button" >Logout</a>
+                <a class="btn btn-primary btn-success navbar-left navbar-btn" style="margin-right: 5px;margin-left: 10PX;" href="/pets" type="button" >Home</a>
+                <a class="btn btn-primary btn-success navbar-left navbar-btn" style="margin-right: 5px; margin-left: 10px;" href="/addpet" type="button" >Add pet</a>
+            <% }else{ %>
+                <a class="btn btn-primary navbar-right navbar-btn" style="margin-right: 5px;" href="/logout" type="button" >Logout</a>
+                <a class="btn btn-primary btn-success navbar-left navbar-btn" style="margin-right: 5px; margin-left: 10px;" href="/" type="button" >Home</a>
+            <% } %>
+        </nav>
+        <div id="snippetContent" style="margin-top: 50px;">
+            <div class="container">
+                <div class="col-xs-12 bootstrap snippets bootdeys">
+                    <!-- product -->
+                    <div class="product-content product-wrap clearfix">
+                        <div class="row">
+                            <div class="col-md-5 col-sm-12 col-xs-12">
+                                <div class="product-image"> 
+                                    <img src="<%= pets.Picture %>" alt="image-pet" class="img-responsive"> 
+                                    <!-- <span class="tag2 hot">
+                                        HOT 
+                                    </span>  -->
+                                </div>
+                            </div>
+                            <div class="col-md-7 col-sm-12 col-xs-12">
+                                <div class="product-deatil">
+                                    <h5 class="name">
+                                        <p><span style="font-weight: bold;">Name:</span> <%= pets.Name %></p>
+                                        <p><span style="font-weight: bold;">Owner:</span> <%= pets.Owner %></p>
+                                        <p><span style="font-weight: bold;">Breed:</span> <%= pets.Breed %></p>
+                                        <p><span style="font-weight: bold;">Location:</span> <%= pets.Location %></p>
+                                        <p><span style="font-weight: bold;">Age:</span> <%= pets.Age %></p>
+                                        <p><span style="font-weight: bold;">Last vaccination Date:</span> <%= pets.vaccinationDate %></p>
+                                        <p><span style="font-weight: bold;">Last vaccine Name:</span> <%= pets.vaccinationName %></p>
+                                        <p><span style="font-weight: bold;">Is Addopted:</span> <%= pets.isAddopted?'Yes':'NO' %></p>
+                                    </h5>
+                                    <!-- <span class="tag1"></span>  -->
+                                </div>
+                                <div class="description">
+                                    <!-- <p>Proin in ullamcorper lorem. Maecenas eu ipsum </p> -->
+                                </div>
+                                <div class="product-info smart-form">
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                            <div class="col-sm-2" style="width: 49%;">
+                                                <% if(locals.username == 'admin') {%>
+                                                    <a class="btn btn-success" style="margin-right: 5px;" id="<%= pets.ID %>" href="/editpet?uid=<%= pets.ID %>">Edit</a>
+                                                <%}%>    
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <button class="btn btn-success" id="pethistory" petid="<%= pets.ID %>" >View History</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div id="historydiv" style="margin-top: 20px; display: block;">
+                                    <!-- <table id="restable" class="display" style="table-layout: fixed; width: 100%;"></table> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <!-- end product -->
+                </div>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script src="script.js"></script>
+    </body>
+</html>
